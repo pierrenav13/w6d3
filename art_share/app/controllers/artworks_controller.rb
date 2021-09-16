@@ -1,8 +1,10 @@
 class ArtworksController < ApplicationController
+
   def index
     # GET /index
-    @artworks = Artwork.all
-    render json: @artworks
+    artworks = Artwork.owned_and_shared(params[:user_id])
+    # debugger
+    render json: artworks
   end
 
   def create

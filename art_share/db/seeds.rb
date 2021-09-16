@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.destroy_all
+ApplicationRecord.connection.reset_pk_sequence!('users')
 Artwork.destroy_all
 ArtworkShare.destroy_all
 
