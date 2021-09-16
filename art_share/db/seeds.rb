@@ -6,13 +6,23 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+User.destroy_all
+Artwork.destroy_all
+ArtworkShare.destroy_all
+
 user_1 = User.create(username: 'Wood')
-artwork_1 = Artwork.create(title: 'Starry Night', image_url: 'url1', artist_id: 1)
+user_2 = User.create(username: 'Pnav')
+user_3 = User.create(username: 'Alice')
+user_4 = User.create(username: 'Barney')
+
+artwork_1 = Artwork.create(title: '1969', image_url: 'url1', artist_id: user_1.id)
+artwork_2 = Artwork.create(title: 'Sky', image_url: 'url2', artist_id: user_2.id)
+artwork_3 = Artwork.create(title: 'In Wonderland', image_url: 'url3', artist_id: user_3.id)
+artwork_4 = Artwork.create(title: 'Purple Dinosaur Show', image_url: 'url4', artist_id: user_4.id)
+
+share_1 = ArtworkShare.create(artwork_id: artwork_1.id, viewer_id: user_2.id)
+share_1 = ArtworkShare.create(artwork_id: artwork_2.id, viewer_id: user_3.id)
+share_1 = ArtworkShare.create(artwork_id: artwork_3.id, viewer_id: user_4.id)
+share_1 = ArtworkShare.create(artwork_id: artwork_4.id, viewer_id: user_1.id)
 
 
-user_2 = User.create(username: 'Davinci')
-artwork_2 = Artwork.create(title: 'Mona Lisa', image_url: 'url2', artist_id: 2)
-
-user_3 = User.create(username: 'User3')
-
-artwork_3 = Artwork.create(title: 'Vetruvian Man', image_url: 'url3', artist_id: 2)

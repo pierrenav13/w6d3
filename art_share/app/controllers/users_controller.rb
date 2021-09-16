@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   # Boot up server with the command: bundle exec rails server or s
 
   def index
+    # GET /users
     @users = User.all
     render json: @users
   end
@@ -21,11 +22,13 @@ class UsersController < ApplicationController
   end
 
   def show
+    # GET /users/:id
     @user = User.find(params[:id])
     render json: @user
   end
 
   def update
+    # PATCH /users/:id
     @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to user_url(@user)
@@ -38,7 +41,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
 
-    redirect_to user_url
+    redirect_to users_url
   end
 
   private
@@ -46,6 +49,5 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:username)
   end
-
 
 end
