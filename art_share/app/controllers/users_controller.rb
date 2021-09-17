@@ -4,7 +4,12 @@ class UsersController < ApplicationController
 
   def index
     # GET /users
-    @users = User.all
+    if params[:username]
+      @users = User.where("users.username ILIKE '#{params[:username]}'")
+    end
+
+    @users = User.all if @users.empty?
+
     render json: @users
   end
 
@@ -41,7 +46,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
 
-    redirect_to users_url
+    render json: @user
+    # redirect_to users_url
   end
 
   private

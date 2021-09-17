@@ -2,7 +2,11 @@ class ArtworksController < ApplicationController
 
   def index
     # GET /index
-    artworks = Artwork.owned_and_shared(params[:user_id])
+    if params[:user_id]
+      artworks = Artwork.owned_and_shared(params[:user_id])
+    else
+      artworks = Artwork.all
+    end
     # debugger
     render json: artworks
   end
@@ -37,7 +41,7 @@ class ArtworksController < ApplicationController
     @artwork.destroy
 
     # render json: @artwork
-    redirect_to artwork_url
+    redirect_to artworks_url
 
     # redirect DOES delete the artwork, but gives us funky page
   end

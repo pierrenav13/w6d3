@@ -9,7 +9,12 @@
 User.destroy_all
 ApplicationRecord.connection.reset_pk_sequence!('users')
 Artwork.destroy_all
+ApplicationRecord.connection.reset_pk_sequence!('artworks')
 ArtworkShare.destroy_all
+ApplicationRecord.connection.reset_pk_sequence!('artwork_shares')
+Comment.destroy_all
+ApplicationRecord.connection.reset_pk_sequence!('comments')
+
 
 user_1 = User.create(username: 'Wood')
 user_2 = User.create(username: 'Pnav')
@@ -26,4 +31,7 @@ share_1 = ArtworkShare.create(artwork_id: artwork_2.id, viewer_id: user_3.id)
 share_1 = ArtworkShare.create(artwork_id: artwork_3.id, viewer_id: user_4.id)
 share_1 = ArtworkShare.create(artwork_id: artwork_4.id, viewer_id: user_1.id)
 
-
+comment_1 = Comment.create(user_id: user_1.id, artwork_id: artwork_2.id, body: "comment 1")
+comment_2 = Comment.create(user_id: user_2.id, artwork_id: artwork_1.id, body: "comment 2")
+comment_3 = Comment.create(user_id: user_3.id, artwork_id: artwork_1.id, body: "comment 3")
+comment_4 = Comment.create(user_id: user_4.id, artwork_id: artwork_2.id, body: "comment 4")

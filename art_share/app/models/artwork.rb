@@ -28,10 +28,16 @@ class Artwork < ApplicationRecord
     through: :artwork_shares,
     source: :viewer
 
+  has_many :comments,
+    primary_key: :id,
+    foreign_key: :artwork_id,
+    class_name: :Comment,
+    dependent: :destroy
+
   def self.owned_and_shared(id)
     Artwork
       .joins(:artwork_shares)
       .where('artwork_shares.viewer_id = :id OR artworks.artist_id = :id', id: id)
-
   end
+
 end

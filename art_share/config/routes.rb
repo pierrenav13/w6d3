@@ -7,11 +7,13 @@ Rails.application.routes.draw do
 
   # get ':user_id/artworks', to: 'artworks#index'
 
-  resources :artworks, only: [:create, :destroy, :show, :update]
+  resources :artworks, only: [:create, :destroy, :show, :update, :index]
 
   resources :artwork_shares, only: [:create, :destroy]
 
   # if we nest artworks under users
   # nest artwork index method -> artowrk associated to one particular user
+
+  resources :comments, only: [:create, :destroy, :index]
 
 end
